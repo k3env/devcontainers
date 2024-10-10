@@ -1,0 +1,8 @@
+ARG UBUNTU_RELEASE=24.04
+
+FROM ubuntu:${UBUNTU_RELEASE}
+RUN apt update && apt install git wget curl sudo software-properties-common -y
+RUN useradd -m devc
+COPY files/sudoers-allow-sudo /etc/sudoers.d/000-allow-sudo
+USER devc
+CMD ["/bin/bash"]
